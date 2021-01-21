@@ -1,0 +1,36 @@
+{
+  "name": "gilded-rose-kata",
+  "version": "1.0.0",
+  "description": "Gilded Rose kata in JavaScript with Jest",
+  "scripts": {
+    "format": "prettier --write \"{src,test}/**/*.{js,jsx,md}\"",
+    "format:watch": "onchange \"{src,test}/**/*.{js,jsx,md}\" -- prettier --write {{changed}}",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "test:watch": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thawkin3/gilded-rose-js.git"
+  },
+  "keywords": [
+    "kata",
+    "refactor",
+    "gilded-rose"
+  ],
+  "license": "MIT",
+  "private": true,
+  "bugs": {
+    "url": "https://github.com/thawkin3/gilded-rose-js/issues"
+  },
+  "homepage": "https://github.com/thawkin3/gilded-rose-js",
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "babel-jest": "^26.6.3",
+    "jest": "^26.6.3",
+    "jest-watch-typeahead": "^0.6.1",
+    "onchange": "^7.1.0",
+    "prettier": "^2.2.1"
+  }
+}
