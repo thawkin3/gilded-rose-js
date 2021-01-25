@@ -5,7 +5,7 @@ import {
   BackstagePasses,
   Sulfuras,
   Conjured,
-} from './gilded_rose'
+} from './gildedRose'
 
 describe('Gilded Rose', () => {
   describe('normal item', () => {
