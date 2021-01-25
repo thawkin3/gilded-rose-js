@@ -66,6 +66,23 @@ export class Sulfuras extends Item {
   updateQuality() {}
 }
 
+export class Conjured extends Item {
+  constructor(sellIn, quality) {
+    super('Conjured', sellIn, quality)
+  }
+
+  updateQuality() {
+    this.quality -= 2
+
+    if (this.sellIn <= 0) {
+      this.quality -= 2
+    }
+
+    this.quality = Math.max(this.quality, Item.MIN_QUALITY)
+    this.sellIn -= 1
+  }
+}
+
 export class Shop {
   constructor(items = []) {
     this.items = items

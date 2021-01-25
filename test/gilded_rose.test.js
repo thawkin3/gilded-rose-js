@@ -4,6 +4,7 @@ import {
   AgedBrie,
   BackstagePasses,
   Sulfuras,
+  Conjured,
 } from '../src/gilded_rose'
 
 describe('Gilded Rose', () => {
