@@ -14,20 +14,34 @@ export class AgedBrie extends Item {
   static MAX_QUALITY = 50
 
   updateQuality() {
-    this.sellIn -= 1
     this.quality += 1
 
-    if (this.sellIn <= -1) {
+    if (this.sellIn <= 0) {
       this.quality += 1
     }
 
     this.quality = Math.min(this.quality, AgedBrie.MAX_QUALITY)
+    this.sellIn -= 1
   }
 }
 
 export class BackstagePasses extends Item {
   constructor(sellIn, quality) {
     super('Backstage passes to a TAFKAL80ETC concert', sellIn, quality)
+  }
+
+  updateQuality() {
+    if (this.sellIn > 10) {
+      this.quality += 1
+    } else if (this.sellIn <= 10 && this.sellIn > 5) {
+      this.quality += 2
+    } else if (this.sellIn <= 5 && this.sellIn > 0) {
+      this.quality += 3
+    } else {
+      this.quality = 0
+    }
+
+    this.sellIn -= 1
   }
 }
 
@@ -49,6 +63,7 @@ export class Shop {
 
       switch (item.name) {
         case 'Aged Brie':
+        case 'Backstage passes to a TAFKAL80ETC concert':
         case 'Sulfuras, Hand of Ragnaros':
           item.updateQuality()
           break
