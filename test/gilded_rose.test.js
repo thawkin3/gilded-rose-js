@@ -1,4 +1,10 @@
-import { Shop, Item } from '../src/gilded_rose'
+import {
+  Shop,
+  Item,
+  AgedBrie,
+  BackstagePasses,
+  Sulfuras,
+} from '../src/gilded_rose'
 
 describe('Gilded Rose', () => {
   describe('normal item', () => {
@@ -48,7 +54,7 @@ describe('Gilded Rose', () => {
 
   describe('Aged Brie', () => {
     it('increases the quality by 1 and decreases the sellIn by 1 for each day passed', () => {
-      const gildedRose = new Shop([new Item('Aged Brie', 2, 4)])
+      const gildedRose = new Shop([new AgedBrie(2, 4)])
       const item = gildedRose.items[0]
 
       gildedRose.updateQuality()
@@ -61,7 +67,7 @@ describe('Gilded Rose', () => {
     })
 
     it('increases the quality by 2 and decreases the sellIn by 1 for each day that passes beyond the `sellIn` day', () => {
-      const gildedRose = new Shop([new Item('Aged Brie', 1, 10)])
+      const gildedRose = new Shop([new AgedBrie(1, 10)])
       const item = gildedRose.items[0]
 
       gildedRose.updateQuality()
@@ -74,7 +80,7 @@ describe('Gilded Rose', () => {
     })
 
     it('does not allow the quality of the item to exceed 50', () => {
-      const gildedRose = new Shop([new Item('Aged Brie', 5, 49)])
+      const gildedRose = new Shop([new AgedBrie(5, 49)])
       const item = gildedRose.items[0]
 
       gildedRose.updateQuality()
@@ -89,9 +95,7 @@ describe('Gilded Rose', () => {
 
   describe('Backstage passes to a TAFKAL80ETC concert', () => {
     it('increases the quality by 1 and decreases the sellIn by 1 for each day passed when the sellIn value is greater than 10', () => {
-      const gildedRose = new Shop([
-        new Item('Backstage passes to a TAFKAL80ETC concert', 15, 4),
-      ])
+      const gildedRose = new Shop([new BackstagePasses(15, 4)])
       const item = gildedRose.items[0]
 
       gildedRose.updateQuality()
@@ -104,9 +108,7 @@ describe('Gilded Rose', () => {
     })
 
     it('increases the quality by 2 and decreases the sellIn by 1 for each day passed when the sellIn value is between 10 and 6, inclusive', () => {
-      const gildedRose = new Shop([
-        new Item('Backstage passes to a TAFKAL80ETC concert', 11, 4),
-      ])
+      const gildedRose = new Shop([new BackstagePasses(11, 4)])
       const item = gildedRose.items[0]
 
       gildedRose.updateQuality()
@@ -119,9 +121,7 @@ describe('Gilded Rose', () => {
     })
 
     it('increases the quality by 3 and decreases the sellIn by 1 for each day passed when the sellIn value is between 5 and 0, inclusive', () => {
-      const gildedRose = new Shop([
-        new Item('Backstage passes to a TAFKAL80ETC concert', 6, 4),
-      ])
+      const gildedRose = new Shop([new BackstagePasses(6, 4)])
       const item = gildedRose.items[0]
 
       gildedRose.updateQuality()
@@ -134,9 +134,7 @@ describe('Gilded Rose', () => {
     })
 
     it('drops in quality to 0 when the sellIn value is less than 0', () => {
-      const gildedRose = new Shop([
-        new Item('Backstage passes to a TAFKAL80ETC concert', 1, 4),
-      ])
+      const gildedRose = new Shop([new BackstagePasses(1, 4)])
       const item = gildedRose.items[0]
 
       gildedRose.updateQuality()
@@ -151,9 +149,7 @@ describe('Gilded Rose', () => {
 
   describe('Sulfuras, Hand of Ragnaros', () => {
     it('never changes in quality or sellIn days', () => {
-      const gildedRose = new Shop([
-        new Item('Sulfuras, Hand of Ragnaros', 2, 4),
-      ])
+      const gildedRose = new Shop([new Sulfuras(2, 4)])
       const item = gildedRose.items[0]
 
       gildedRose.updateQuality()
