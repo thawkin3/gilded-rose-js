@@ -35,6 +35,8 @@ export class Sulfuras extends Item {
   constructor(sellIn, quality) {
     super('Sulfuras, Hand of Ragnaros', sellIn, quality)
   }
+
+  updateQuality() {}
 }
 
 export class Shop {
@@ -47,6 +49,7 @@ export class Shop {
 
       switch (item.name) {
         case 'Aged Brie':
+        case 'Sulfuras, Hand of Ragnaros':
           item.updateQuality()
           break
         default:
