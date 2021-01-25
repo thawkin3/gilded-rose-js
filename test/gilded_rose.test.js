@@ -161,4 +161,49 @@ describe('Gilded Rose', () => {
       expect(item.quality).toBe(4)
     })
   })
+
+  describe('Conjured', () => {
+    it('decreases the quality by 2 and decreases the sellIn by 1 for each day passed', () => {
+      const gildedRose = new Shop([new Conjured(4, 6)])
+      const item = gildedRose.items[0]
+
+      gildedRose.updateQuality()
+      expect(item.sellIn).toBe(3)
+      expect(item.quality).toBe(4)
+
+      gildedRose.updateQuality()
+      expect(item.sellIn).toBe(2)
+      expect(item.quality).toBe(2)
+    })
+
+    it('decreases the quality by 4 and decreases the sellIn by 1 for each day that passes beyond the `sellIn` day', () => {
+      const gildedRose = new Shop([new Conjured(1, 10)])
+      const item = gildedRose.items[0]
+
+      gildedRose.updateQuality()
+      expect(item.sellIn).toBe(0)
+      expect(item.quality).toBe(8)
+
+      gildedRose.updateQuality()
+      expect(item.sellIn).toBe(-1)
+      expect(item.quality).toBe(4)
+    })
+
+    it('does not allow the quality of the item to drop below 0', () => {
+      const gildedRose = new Shop([new Conjured(5, 2)])
+      const item = gildedRose.items[0]
+
+      gildedRose.updateQuality()
+      expect(item.sellIn).toBe(4)
+      expect(item.quality).toBe(0)
+
+      gildedRose.updateQuality()
+      expect(item.sellIn).toBe(3)
+      expect(item.quality).toBe(0)
+
+      gildedRose.updateQuality()
+      expect(item.sellIn).toBe(2)
+      expect(item.quality).toBe(0)
+    })
+  })
 })
