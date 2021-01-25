@@ -89,11 +89,7 @@ export class Shop {
   }
 
   updateQuality() {
-    for (let i = 0; i < this.items.length; i++) {
-      const item = this.items[i]
-      item.updateQuality()
-    }
-
+    this.items.forEach(item => item.updateQuality())
     return this.items
   }
 }
