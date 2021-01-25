@@ -10,6 +10,19 @@ export class AgedBrie extends Item {
   constructor(sellIn, quality) {
     super('Aged Brie', sellIn, quality)
   }
+
+  static MAX_QUALITY = 50
+
+  updateQuality() {
+    this.sellIn -= 1
+    this.quality += 1
+
+    if (this.sellIn <= -1) {
+      this.quality += 1
+    }
+
+    this.quality = Math.min(this.quality, AgedBrie.MAX_QUALITY)
+  }
 }
 
 export class BackstagePasses extends Item {
@@ -32,51 +45,59 @@ export class Shop {
     for (let i = 0; i < this.items.length; i++) {
       const item = this.items[i]
 
-      if (
-        item.name != 'Aged Brie' &&
-        item.name != 'Backstage passes to a TAFKAL80ETC concert'
-      ) {
-        if (item.quality > 0) {
-          if (item.name != 'Sulfuras, Hand of Ragnaros') {
-            item.quality = item.quality - 1
-          }
-        }
-      } else {
-        if (item.quality < 50) {
-          item.quality = item.quality + 1
-          if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
-            if (item.sellIn < 11) {
-              if (item.quality < 50) {
-                item.quality = item.quality + 1
-              }
-            }
-            if (item.sellIn < 6) {
-              if (item.quality < 50) {
-                item.quality = item.quality + 1
-              }
-            }
-          }
-        }
-      }
-      if (item.name != 'Sulfuras, Hand of Ragnaros') {
-        item.sellIn = item.sellIn - 1
-      }
-      if (item.sellIn < 0) {
-        if (item.name != 'Aged Brie') {
-          if (item.name != 'Backstage passes to a TAFKAL80ETC concert') {
+      switch (item.name) {
+        case 'Aged Brie':
+          item.updateQuality()
+          break
+        default:
+          if (
+            item.name != 'Aged Brie' &&
+            item.name != 'Backstage passes to a TAFKAL80ETC concert'
+          ) {
             if (item.quality > 0) {
               if (item.name != 'Sulfuras, Hand of Ragnaros') {
                 item.quality = item.quality - 1
               }
             }
           } else {
-            item.quality = item.quality - item.quality
+            if (item.quality < 50) {
+              item.quality = item.quality + 1
+              if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
+                if (item.sellIn < 11) {
+                  if (item.quality < 50) {
+                    item.quality = item.quality + 1
+                  }
+                }
+                if (item.sellIn < 6) {
+                  if (item.quality < 50) {
+                    item.quality = item.quality + 1
+                  }
+                }
+              }
+            }
           }
-        } else {
-          if (item.quality < 50) {
-            item.quality = item.quality + 1
+
+          if (item.name != 'Sulfuras, Hand of Ragnaros') {
+            item.sellIn = item.sellIn - 1
           }
-        }
+
+          if (item.sellIn < 0) {
+            if (item.name != 'Aged Brie') {
+              if (item.name != 'Backstage passes to a TAFKAL80ETC concert') {
+                if (item.quality > 0) {
+                  if (item.name != 'Sulfuras, Hand of Ragnaros') {
+                    item.quality = item.quality - 1
+                  }
+                }
+              } else {
+                item.quality = item.quality - item.quality
+              }
+            } else {
+              if (item.quality < 50) {
+                item.quality = item.quality + 1
+              }
+            }
+          }
       }
     }
 
