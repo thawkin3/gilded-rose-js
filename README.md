@@ -1,12 +1,12 @@
 # Gilded Rose
 
-This is the Gilded Rose kata in JavaScript with Jest
+This is the Gilded Rose kata implemented in JavaScript and tested with Jest.
 
-Original repository _`https://github.com/emilybache/GildedRose-Refactoring-Kata/tree/master/js-jest`_ 
+This is adapted from the [original repository](https://github.com/emilybache/GildedRose-Refactoring-Kata/tree/master/js-jest) by Emily Bache.
 
 ## Kata Requirements
 
-View the [requirements here](Requirements.md)
+View the [requirements here](Requirements.md).
 
 ## Getting Started
 
